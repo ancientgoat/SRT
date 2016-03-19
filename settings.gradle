@@ -1,0 +1,4 @@
+rootProject.name = 'srt'
+
+include 'util', 'dto', 'service', 'controller'
+
