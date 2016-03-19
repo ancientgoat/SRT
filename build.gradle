@@ -11,6 +11,7 @@ project(':service') {
     dependencies {
         compile project (':util')
         compile project (':dto')
+
         //compile project (':service')
     }
 }
