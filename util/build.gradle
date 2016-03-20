@@ -4,26 +4,17 @@ buildscript {
         mavenLocal()
         jcenter()
     }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
-    }
 }
 //
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot'
 // apply plugin: 'findbugs'
 // apply plugin: 'checkstyle'
 // apply plugin: 'pmd'
 apply plugin: 'jacoco'
 apply plugin: 'maven-publish'       // see 'publishing' closure
 
-mainClassName = "srt-util"
-//
-jar {
-    baseName = 'srt-util'
-}
 repositories {
     mavenCentral()
     mavenLocal()

@@ -2,17 +2,18 @@ project(':service') {
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
-    //    apply plugin: 'spring-boot'
-    //    apply plugin: 'findbugs'
-    //    apply plugin: 'checkstyle'
-    //    apply plugin: 'pmd'
-    //    apply plugin: 'jacoco'
-    //    apply plugin: 'maven-publish'       // see 'publishing' closure
+    // apply plugin: 'spring-boot'
+    // apply plugin: 'findbugs'
+    // apply plugin: 'checkstyle'
+    // apply plugin: 'pmd'
+    // apply plugin: 'jacoco'
+    // apply plugin: 'maven-publish'       // see 'publishing' closure
+
     dependencies {
         compile project (':util')
         compile project (':dto')
 
-        //compile project (':service')
+        // compile project (':service')
     }
 }
 
