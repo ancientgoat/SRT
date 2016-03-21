@@ -7,8 +7,6 @@ import org.springframework.data.domain.Persistable;
  */
 public class ChildPersistable implements Persistable<Long> {
 
-	private transient boolean persisted = false;
-
 	private Long id;
 	private String name;
 	private ParentPersistable parent;
@@ -26,6 +24,11 @@ public class ChildPersistable implements Persistable<Long> {
 		return this.id;
 	}
 
+	@Override
+	public boolean isNew() {
+		return null == this.id;
+	}
+
 	public ChildPersistable setParent(ParentPersistable parent) {
 		this.parent = parent;
 		return this;
@@ -41,13 +44,9 @@ public class ChildPersistable implements Persistable<Long> {
 		return this;
 	}
 
-	public ChildPersistable withPersisted(boolean inPersisted) {
-		this.persisted = inPersisted;
-		return this;
-	}
+	// public ChildPersistable withPersisted(boolean inPersisted) {
+	// 	this.persisted = inPersisted;
+	// 	return this;
+	// }
 
-	@Override
-	public boolean isNew() {
-		return !persisted;
-	}
 }
