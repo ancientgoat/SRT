@@ -1,13 +1,30 @@
 -- =============================================================================
 --
 -- =============================================================================
+DROP TABLE IF EXISTS PARENT_TABLE CASCADE;
 DROP TABLE IF EXISTS CHILD_TABLE CASCADE;
 
 CREATE TABLE IF NOT EXISTS CHILD_TABLE
-(
-  Id    BIGSERIAL
-, Name  VARCHAR(256)
+( Id          BIGSERIAL
+, Name        VARCHAR(256)
+, Parent_Id   BIGINT
 --
 , CONSTRAINT CHILD_TABLE_PK PRIMARY KEY (Id)
 );
 
+CREATE TABLE IF NOT EXISTS PARENT_TABLE
+( Id          BIGSERIAL
+, Name        VARCHAR(256)
+, Child_Id    BIGINT
+--
+, CONSTRAINT PARENT_TABLE_PK PRIMARY KEY (Id)
+, CONSTRAINT PARENT_TABLE__CHILD_ID_FK
+    FOREIGN KEY ( Child_Id )
+    REFERENCES CHILD_TABLE ( Id )
+);
+
+ALTER TABLE CHILD_TABLE
+  ADD CONSTRAINT CHILD_TABLE__PARENT_ID_FK
+  FOREIGN KEY ( Parent_Id )
+  REFERENCES PARENT_TABLE ( Id )
+;

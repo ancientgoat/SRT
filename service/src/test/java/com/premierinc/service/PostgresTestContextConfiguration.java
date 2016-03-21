@@ -17,9 +17,6 @@ import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.
 /**
  *
  */
-
-//@EnableTransactionManagement
-//@Configuration
 @Component
 @PropertySource("classpath:application.properties")
 public class PostgresTestContextConfiguration extends JdbcRepositoryTestConfig {
@@ -42,12 +39,6 @@ public class PostgresTestContextConfiguration extends JdbcRepositoryTestConfig {
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
 		return new PropertySourcesPlaceholderConfigurer();
-	}
-
-	@Bean
-	@Override
-	public ChildRepo childRepo() {
-		return new ChildRepo();
 	}
 
 	@Bean
