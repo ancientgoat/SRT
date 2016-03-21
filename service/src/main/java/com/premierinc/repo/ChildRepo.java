@@ -8,12 +8,14 @@ import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**
  *
  */
 @Repository
+@Component
 public class ChildRepo extends JdbcRepository<ChildPersistable, Long> {
 
 	public ChildRepo() {
@@ -53,13 +55,13 @@ public class ChildRepo extends JdbcRepository<ChildPersistable, Long> {
 	// public <S extends T> S save(S entity) {
 	@Override
 	public ChildPersistable save(ChildPersistable entity) {
-		return null;
+		return super.save(entity);
 	}
 
 	// public Iterable<ChildPersistable> save(Iterable<ChildPersistable> entities) {
 	@Override
 	public <S extends ChildPersistable> Iterable<S> save(Iterable<S> entities) {
-		return null;
+		return super.save(entities);
 	}
 
 	// @Override
