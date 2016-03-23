@@ -29,7 +29,6 @@ dependencies {
 
     //compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.2.5.RELEASE'
 
-    compile project(':util')
     compile project(':dto')
     compile project(':spring-data-jdbc-repository')
 

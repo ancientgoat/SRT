@@ -29,10 +29,7 @@ dependencies {
     //compile group: 'org.springframework.boot', name: 'spring-boot-starter-rest', version: '1.2.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.2.5.RELEASE'
 
-    compile project(':util')
-    compile project(':dto')
     compile project(':service')
-    compile project(':spring-data-jdbc-repository')
 
     //testCompile group: 'junit', name: 'junit', version: '4.11'
     //testCompile group: 'org.testng', name: 'testng', version: '6.9.10'

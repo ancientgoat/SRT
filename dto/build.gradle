@@ -16,10 +16,16 @@ repositories {
 }
 
 dependencies {
-    compile group: "com.nurkiewicz.jdbcrepository", name: "jdbcrepository", version: "0.4"
-    compile project (":util")
-    // compile group: "org.springframework.boot", name: "spring-boot-starter-data-rest", version: "1.2.5.RELEASE"
-    // testCompile group: 'com.h2database', name: 'h2', version: '1.4.187'
+    compile project (':util')
+
+    compile group: 'ca.uhn.hapi', name: 'hapi-base', version: '2.2'
+    compile group: 'ca.uhn.hapi', name: 'hapi-structures-v21', version: '2.2'
+    compile group: 'ca.uhn.hapi', name: 'hapi-structures-v251', version: '2.2'
+    compile group: 'ca.uhn.hapi', name: 'hapi-hl7overhttp', version: '2.2'
+
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.11.4.RELEASE'
+
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
@@ -27,7 +33,7 @@ dependencies {
 // Checking Code Style
 //
 //checkstyle {
-//    toolVersion = "6.0"
+//    toolVersion = '6.0'
 //}
 
 //

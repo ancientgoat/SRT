@@ -35,7 +35,7 @@ public class ParentChildRepo extends JdbcRepository<ParentPersistable, Long> {
 			"P.Id AS Parent_Id, P.Name AS Parent_Name, C.Id AS Child_Id, C.Name AS Child_Name";
 
 	private final static TableDescription TABLE_DESC = new TableDescription("PARENT_TABLE",
-			LINK_TABLES, "id");
+			LINK_TABLES, "P.id");
 
 	public ParentChildRepo(@Value("${trs.db.type:POSTGRES}") SqlGeneratorType dbType) {
 		super(ROW_MAPPER, ROW_UNMAPPER, SqlGeneratorFactory.newInstance(dbType, COLUMN_LIST),
