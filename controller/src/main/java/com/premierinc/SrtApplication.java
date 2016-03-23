@@ -1,4 +1,4 @@
-package com.premierinc.controller;
+package com.premierinc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

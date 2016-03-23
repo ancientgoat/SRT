@@ -2,14 +2,17 @@ package com.premierinc.repo;
 
 import com.nurkiewicz.jdbcrepository.JdbcRepository;
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import com.nurkiewicz.jdbcrepository.SqlGeneratorFactory;
+import com.nurkiewicz.jdbcrepository.SqlGeneratorType;
 import com.nurkiewicz.jdbcrepository.TableDescription;
-import com.nurkiewicz.jdbcrepository.sql.SqlGenerator;
 import com.premierinc.persistable.ChildPersistable;
 import com.premierinc.persistable.ParentPersistable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -19,7 +22,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Component
+@PropertySource("classpath:application.properties")
 public class ParentChildRepo extends JdbcRepository<ParentPersistable, Long> {
+
+	//	@Value("${trs.db.type:POSTGRES}")
+	//	private static SqlGeneratorType dbType;
 
 	private final static String LINK_TABLES =
 			"PARENT_TABLE P LEFT OUTER JOIN CHILD_TABLE C ON C.Id = P.Child_Id";
@@ -27,14 +34,12 @@ public class ParentChildRepo extends JdbcRepository<ParentPersistable, Long> {
 	private final static String COLUMN_LIST =
 			"P.Id AS Parent_Id, P.Name AS Parent_Name, C.Id AS Child_Id, C.Name AS Child_Name";
 
-	public final static SqlGenerator SQL_GENERATOR = new SqlGenerator(COLUMN_LIST);
-
 	private final static TableDescription TABLE_DESC = new TableDescription("PARENT_TABLE",
-			LINK_TABLES, "P.Id");
+			LINK_TABLES, "id");
 
-	public ParentChildRepo() {
-		// 3rd param is TableName
-		super(ROW_MAPPER, ROW_UNMAPPER, SQL_GENERATOR, TABLE_DESC);
+	public ParentChildRepo(@Value("${trs.db.type:POSTGRES}") SqlGeneratorType dbType) {
+		super(ROW_MAPPER, ROW_UNMAPPER, SqlGeneratorFactory.newInstance(dbType, COLUMN_LIST),
+				TABLE_DESC);
 	}
 
 	public static final RowMapper<ParentPersistable> ROW_MAPPER =
@@ -45,8 +50,8 @@ public class ParentChildRepo extends JdbcRepository<ParentPersistable, Long> {
 					final ParentPersistable parentPersistable = new ParentPersistable().setId(
 							rs.getLong("Parent_Id")).setName(rs.getString("Parent_Name"));
 
-					final ChildPersistable child = new ChildPersistable().setId(rs.getLong("Child_Id"))
-							.setName(rs.getString("Child_Name"));
+					final ChildPersistable child = new ChildPersistable().setId(
+							rs.getLong("Child_Id")).setName(rs.getString("Child_Name"));
 
 					parentPersistable.setChild(child);
 					return parentPersistable;
@@ -61,7 +66,12 @@ public class ParentChildRepo extends JdbcRepository<ParentPersistable, Long> {
 					Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 					mapping.put("id", parentPersistable.getId());
 					mapping.put("name", parentPersistable.getName());
-					mapping.put("child_id", child.getId());
+					if (null != child) {
+						Long childId = child.getId();
+						if (null != childId) {
+							mapping.put("child_id", childId);
+						}
+					}
 					// mapping.put("contents", parentPersistable.getContents());
 					// mapping.put("created_time", new java.sql.Timestamp(parentPersistable.getCreatedTime().getTime()));
 					return mapping;

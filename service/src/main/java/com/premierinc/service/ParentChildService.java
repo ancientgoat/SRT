@@ -5,6 +5,8 @@ import com.premierinc.persistable.ParentPersistable;
 import com.premierinc.repo.ChildRepo;
 import com.premierinc.repo.ParentChildRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,5 +38,9 @@ public class ParentChildService {
 
 	public ParentPersistable findOne(final Long inId){
 		return parentChildRepo.findOne(inId);
+	}
+
+	public Page<ParentPersistable> findAll(final Pageable inPageable) {
+		return this.parentChildRepo.findAll(inPageable);
 	}
 }

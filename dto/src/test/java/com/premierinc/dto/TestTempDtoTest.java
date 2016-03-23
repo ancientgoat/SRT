@@ -16,6 +16,7 @@ public class TestTempDtoTest {
 		} catch (Exception e) {
 			String error = ExceptionHelper.toString(e);
 			if (null == error || 10 >= error.length()) {
+
 				Assert.fail("Exception string needs to be not null and longer than 10 chars.");
 			}
 		}

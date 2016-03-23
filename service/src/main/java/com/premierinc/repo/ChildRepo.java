@@ -2,11 +2,17 @@ package com.premierinc.repo;
 
 import com.nurkiewicz.jdbcrepository.JdbcRepository;
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import com.nurkiewicz.jdbcrepository.SqlGeneratorFactory;
+import com.nurkiewicz.jdbcrepository.SqlGeneratorType;
+import com.nurkiewicz.jdbcrepository.TableDescription;
 import com.premierinc.persistable.ChildPersistable;
+import com.premierinc.persistable.ParentPersistable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -16,11 +22,19 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Component
+@PropertySource("classpath:application.properties")
 public class ChildRepo extends JdbcRepository<ChildPersistable, Long> {
 
-	public ChildRepo() {
+	private final static TableDescription TABLE_DESC = new TableDescription("CHILD_TABLE", null,
+			"id");
+
+//	@Value("${trs.db.type:POSTGRES}")
+//	private static SqlGeneratorType dbType;
+
+	public ChildRepo(@Value("${trs.db.type:POSTGRES}") SqlGeneratorType dbType) {
+	//public ChildRepo() {
 		// 3rd param is TableName
-		super(ROW_MAPPER, ROW_UNMAPPER, "child_table");
+		super(ROW_MAPPER, ROW_UNMAPPER, SqlGeneratorFactory.newInstance(dbType), TABLE_DESC);
 	}
 
 	public static final RowMapper<ChildPersistable> ROW_MAPPER = new RowMapper<ChildPersistable>() {

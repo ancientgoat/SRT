@@ -13,10 +13,8 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'jacoco'
-apply plugin: 'maven-publish'       // see 'publishing' closure
 
-mainClassName = "com.premierinc.controller.SrtApplication"
+mainClassName = "com.premierinc.SrtApplication"
 
 repositories {
     mavenCentral()
@@ -25,17 +23,19 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.nurkiewicz.jdbcrepository', name: 'jdbcrepository', version: '0.4'
+    // compile group: 'com.nurkiewicz.jdbcrepository', name: 'jdbcrepository', version: '0.4'
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.2.5.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '1.2.5.RELEASE'
+    //compile group: 'org.springframework.boot', name: 'spring-boot-starter-rest', version: '1.2.5.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.2.5.RELEASE'
 
     compile project(':util')
     compile project(':dto')
     compile project(':service')
+    compile project(':spring-data-jdbc-repository')
 
-    // testCompile group: 'com.h2database', name: 'h2', version: '1.4.187'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    //testCompile group: 'junit', name: 'junit', version: '4.11'
+    //testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
 }
 
 //

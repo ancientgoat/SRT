@@ -1,4 +1,4 @@
 rootProject.name = 'srt'
 
-include 'util', 'dto', 'service', 'controller'
+include 'util', 'dto', 'spring-data-jdbc-repository', 'service', 'controller'
 

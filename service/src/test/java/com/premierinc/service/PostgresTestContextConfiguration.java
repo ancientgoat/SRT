@@ -23,16 +23,22 @@ public class PostgresTestContextConfiguration extends JdbcRepositoryTestConfig {
 
 	public static final int POSTGRESQL_PORT = 5432;
 
-	@Value("${spring.datasource.url}")
+//	trs.db.driver=org.postgresql.Driver
+//	trs.db.url=jdbc:postgresql://localhost:5432/dev1
+//	trs.db.user=postgres
+//	trs.db.password=postgres
+//	trs.db.type=POSTGRES
+
+	@Value("${trs.db.url}")
 	private String dsUrl;
 
-	@Value("${spring.datasource.username}")
+	@Value("${trs.db.user}")
 	private String dsUser;
 
-	@Value("${spring.datasource.password}")
+	@Value("${trs.db.password}")
 	private String dsPass;
 
-	@Value("${spring.datasource.database.name}")
+	@Value("${trs.db.database.name}")
 	private String dsDatabaseName;
 
 	//To resolve ${} in @Value

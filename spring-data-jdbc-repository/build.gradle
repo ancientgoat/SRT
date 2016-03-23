@@ -1,0 +1,35 @@
+version 'unspecified'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.9.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '4.2.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '4.2.5.RELEASE'
+
+    testCompile group: 'mysql', name: 'mysql-connector-java', version: '5.1.33'
+    testCompile group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
+    testCompile group: 'org.hsqldb', name: 'hsqldb', version: '2.3.2'
+    testCompile group: 'org.apache.derby', name: 'derby', version: '10.11.1.1'
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.181'
+    testCompile group: 'net.sourceforge.jtds', name: 'jtds', version: '1.2.7'
+    testCompile group: 'com.jolbox', name: 'bonecp', version: '0.8.0.RELEASE'
+
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.2.5.RELEASE'
+    testCompile group: 'org.easytesting', name: 'fest-assert-core', version: '2.0M10'
+    //testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+//
+// We use the Gradle Wrapper
+//
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+}
