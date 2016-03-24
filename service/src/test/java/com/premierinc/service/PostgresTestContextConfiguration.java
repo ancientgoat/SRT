@@ -56,16 +56,6 @@ public class PostgresTestContextConfiguration extends JdbcRepositoryTestConfig {
 	@Override
 	public DataSource dataSource() {
 
-		System.out.println("************************************** : " + dsUrl);
-		System.out.println("************************************** : " + dsUrl);
-		System.out.println("************************************** : " + dsUrl);
-		System.out.println("************************************** : " + dsUrl);
-		System.out.println("************************************** : " + dsUrl);
-		System.out.println("************************************** : " + dsUrl);
-		System.out.println("************************************** : " + dsUrl);
-		System.out.println("************************************** : " + dsUrl);
-		System.out.println("************************************** : " + dsUrl);
-
 		EmbeddedDatabase embeddedDatabase = new EmbeddedDatabaseBuilder()
 				//.generateUniqueName(true)
 				.setType(H2).setScriptEncoding("UTF-8").ignoreFailedDrops(true).addScript(

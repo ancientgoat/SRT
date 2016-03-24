@@ -13,6 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -28,24 +29,27 @@ public class ChildRepo extends JdbcRepository<ChildPersistable, Long> {
 	private final static TableDescription TABLE_DESC = new TableDescription("CHILD_TABLE", null,
 			"id");
 
-//	@Value("${trs.db.type:POSTGRES}")
-//	private static SqlGeneratorType dbType;
+	//	@Value("${trs.db.type:POSTGRES}")
+	//	private static SqlGeneratorType dbType;
 
 	public ChildRepo(@Value("${trs.db.type:POSTGRES}") SqlGeneratorType dbType) {
-	//public ChildRepo() {
+		//public ChildRepo() {
 		// 3rd param is TableName
 		super(ROW_MAPPER, ROW_UNMAPPER, SqlGeneratorFactory.newInstance(dbType), TABLE_DESC);
 	}
 
-	public static final RowMapper<ChildPersistable> ROW_MAPPER = new RowMapper<ChildPersistable>() {
-		@Override
-		public ChildPersistable mapRow(ResultSet rs, int rowNum) throws SQLException {
-			return new ChildPersistable().setId(rs.getLong("id")).setName(rs.getString("name"))
-					// , rs.getString("contents")
-					// , rs.getTimestamp("created_time")
-					;
-		}
-	};
+	public static final RowMapper<ChildPersistable> ROW_MAPPER = new BeanPropertyRowMapper<>(
+			ChildPersistable.class);
+
+	//	public static final RowMapper<ChildPersistable> ROW_MAPPER = new RowMapper<ChildPersistable>() {
+	//		@Override
+	//		public ChildPersistable mapRow(ResultSet rs, int rowNum) throws SQLException {
+	//			return new ChildPersistable().setId(rs.getLong("id")).setName(rs.getString("name"))
+	//					// , rs.getString("contents")
+	//					// , rs.getTimestamp("created_time")
+	//					;
+	//		}
+	//	};
 
 	private static final RowUnmapper<ChildPersistable> ROW_UNMAPPER =
 			new RowUnmapper<ChildPersistable>() {

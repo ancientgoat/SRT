@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  *
  */
-@RestController("/")
-//@Controller("/parent")
+@RestController
+@RequestMapping("/parent")
 public class ParentChildController {
 
 	private ParentChildService parentChildService;
@@ -24,12 +24,14 @@ public class ParentChildController {
 		this.parentChildService = inParentChildService;
 	}
 
-	@RequestMapping(value = "/parent", method = RequestMethod.GET, produces = "application/json")
+	//@RequestMapping(value = "/parent", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public Page<ParentPersistable> getParents(final Pageable inPageable) {
 		return this.parentChildService.findAll(inPageable);
 	}
 
-	@RequestMapping(value = "/parent", method = RequestMethod.POST, produces = "application/json")
+	//@RequestMapping(value = "/parent", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public ParentPersistable saveParent(final @RequestBody ParentPersistable inParent) {
 		final ParentPersistable savedParent = parentChildService.save(inParent);
 		return savedParent;

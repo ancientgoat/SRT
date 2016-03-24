@@ -18,6 +18,13 @@ The concepts I indeed to show are as follows:
         via AJP.  https://tomcat.apache.org/tomcat-7.0-doc/config/ajp.html
         This is not explained further in this example.
  * Intro to Spring Data - one of my faviorate things EVER!
+   * http://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-lookup-strategies
+   * Pageable : section 3.4.4/3.4.5 and all over
+   * Streams : section 3.4.6
+   * Async : section 3.4.7
+   * Table 4. Supported keywords inside method names
+   * 4.3.7 : Modifying queries
+
  * Spring Rest/MVC
  * Introducing Spring Data-Lite with JDBCTemplate (stolen and modified)
  * A bit of FHIR in action.

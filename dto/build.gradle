@@ -16,12 +16,16 @@ repositories {
 }
 
 dependencies {
-    compile project (':util')
+    compile project(':util')
 
     compile group: 'ca.uhn.hapi', name: 'hapi-base', version: '2.2'
     compile group: 'ca.uhn.hapi', name: 'hapi-structures-v21', version: '2.2'
     compile group: 'ca.uhn.hapi', name: 'hapi-structures-v251', version: '2.2'
     compile group: 'ca.uhn.hapi', name: 'hapi-hl7overhttp', version: '2.2'
+    compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-base', version: '1.4'
+    compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-structures-dstu3', version: '1.4'
+
+    compile group: 'ca.uhn.hapi.fhir', name: 'hapi-fhir-structures-dstu2', version: '1.4'
 
     compile group: 'org.springframework.data', name: 'spring-data-commons', version: '1.11.4.RELEASE'
 
