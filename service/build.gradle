@@ -27,8 +27,6 @@ dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1208.jre7'
     compile group: 'com.jolbox', name: 'bonecp', version: '0.8.0.RELEASE'
 
-    //compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.2.5.RELEASE'
-
     compile project(':dto')
     compile project(':spring-data-jdbc-repository')
 

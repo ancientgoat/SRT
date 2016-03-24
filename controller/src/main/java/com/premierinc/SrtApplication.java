@@ -11,14 +11,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  *
  */
 @SpringBootApplication
-@EnableWebMvc
+//@EnableWebMvc
 public class SrtApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SrtApplication.class, args);
 	}
 
 	@Bean
-	public ServletRegistrationBean servletRegistrationBean(){
+	public ServletRegistrationBean servletRegistrationBean() {
 		return new ServletRegistrationBean(new DumbFHIRRestfulServer(), "/dumb/*");
 	}
 }

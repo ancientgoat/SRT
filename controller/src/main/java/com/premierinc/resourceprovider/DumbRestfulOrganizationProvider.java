@@ -39,7 +39,8 @@ public class DumbRestfulOrganizationProvider implements IResourceProvider {
 		 * exception causes an HTTP 404 response if the
 		 * ID of "1" isn't used.
 		 */
-		if (!"1".equals(theId.getValue())) {
+		//if (!"1".equals(theId.getValue())) {
+		if (!"1".equals(theId.getIdPart())) {
 			throw new ResourceNotFoundException(theId);
 		}
 

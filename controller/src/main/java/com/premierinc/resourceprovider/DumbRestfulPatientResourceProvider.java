@@ -2,7 +2,6 @@ package com.premierinc.resourceprovider;
 
 import ca.uhn.fhir.model.dstu2.resource.Patient;
 import ca.uhn.fhir.model.dstu2.valueset.AdministrativeGenderEnum;
-import ca.uhn.fhir.model.dstu2.valueset.IdentifierUseEnum;
 import ca.uhn.fhir.model.primitive.IdDt;
 import ca.uhn.fhir.model.primitive.UriDt;
 import ca.uhn.fhir.rest.annotation.IdParam;
@@ -17,7 +16,8 @@ import java.util.List;
 /**
  * All resource providers must implement IResourceProvider
  */
-public class DumbRestfulPatientResourceProvider implements IResourceProvider{
+//@Component
+public class DumbRestfulPatientResourceProvider implements IResourceProvider {
 
 	/**
 	 * The getResourceType method comes from IResourceProvider, and must
@@ -42,21 +42,7 @@ public class DumbRestfulPatientResourceProvider implements IResourceProvider{
 	 */
 	@Read()
 	public Patient getResourceById(@IdParam IdDt theId) {
-
-
-		Patient patient = new Patient();
-		patient.addIdentifier();
-		patient.getIdentifier().get(0).setSystem(new UriDt("urn:hapitest:mrns"));
-		patient.getIdentifier().get(0).setValue("00002");
-
-		theId.setElementSpecificId(theId.getValueAsString());
-		patient.getIdentifier().get(0).setElementSpecificId(theId.getElementSpecificId());
-		patient.setId(theId);
-
-		patient.addName().addFamily("Test");
-		patient.getName().get(0).addGiven("PatientOne");
-		patient.setGender(AdministrativeGenderEnum.FEMALE);
-
+		Patient patient = _makeFakePatient(theId.getValueAsString());
 		return patient;
 	}
 
@@ -66,7 +52,7 @@ public class DumbRestfulPatientResourceProvider implements IResourceProvider{
 	 * this annotation, to support many different search criteria. This
 	 * example searches by family name.
 	 *
-	 * @param theFamilyName
+	 * @param inFamily
 	 *    This operation takes one parameter which is the search criteria. It is
 	 *    annotated with the "@Required" annotation. This annotation takes one argument,
 	 *    a string containing the name of the search criteria. The datatype here
@@ -77,11 +63,38 @@ public class DumbRestfulPatientResourceProvider implements IResourceProvider{
 	 *    matching resources, or it may also be empty.
 	 */
 	@Search()
-	public List<Patient> getPatient(@RequiredParam(name = Patient.SP_FAMILY)
-			StringParam theFamilyName) {
+	public List<Patient> getPatientByFamily(
+			@RequiredParam(name = Patient.SP_FAMILY) StringParam inFamily) {
+
+		final Patient patient = _makeFakePatient(inFamily.getValue());
+		return Collections.singletonList(patient);
+	}
+
+	@Search()
+	public List<Patient> getPatientByName(
+			@RequiredParam(name = Patient.SP_NAME) StringParam inName) {
+
+		final Patient patient = _makeFakePatient(inName.getValue());
+		return Collections.singletonList(patient);
+	}
+
+	@Search()
+	public List<Patient> getPatientByGiven(
+			@RequiredParam(name = Patient.SP_GIVEN) StringParam inGivenName) {
+
+		final Patient patient = _makeFakePatient(inGivenName.getValue());
+		return Collections.singletonList(patient);
+	}
+
+	/**
+	 *
+	 * @param inName
+	 * @return
+	 */
+	private Patient _makeFakePatient(final String inName) {
+
 		Patient patient = new Patient();
 		patient.addIdentifier();
-		//patient.getIdentifier().get(0).setUse(IdentifierUseEnum.OFFICIAL);
 		patient.getIdentifier().get(0).setSystem(new UriDt("urn:hapitest:mrns"));
 		patient.getIdentifier().get(0).setValue("00001");
 		patient.getIdentifier().get(0).setElementSpecificId("42");
@@ -92,9 +105,9 @@ public class DumbRestfulPatientResourceProvider implements IResourceProvider{
 		patient.setId(theId);
 
 		patient.addName();
-		patient.getName().get(0).addFamily(theFamilyName.getValue());
-		patient.getName().get(0).addGiven("PatientOne");
+		patient.getName().get(0).addFamily(inName);
+		patient.getName().get(0).addGiven(String.format("PatientOne(%s)", inName));
 		patient.setGender(AdministrativeGenderEnum.MALE);
-		return Collections.singletonList(patient);
+		return patient;
 	}
 }

@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/parent")
 public class ParentChildController {
 
+	@Autowired
 	private ParentChildService parentChildService;
 
-	@Autowired
-	public ParentChildController(final ParentChildService inParentChildService) {
-		this.parentChildService = inParentChildService;
-	}
+//	@Autowired
+//	public ParentChildController(final ParentChildService inParentChildService) {
+//		this.parentChildService = inParentChildService;
+//	}
 
 	//@RequestMapping(value = "/parent", method = RequestMethod.GET, produces = "application/json")
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
