@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @SpringBootApplication
 public class SrtApplication {
+
 	public static void main(String[] args) {
 		SpringApplication.run(SrtApplication.class, args);
 	}
