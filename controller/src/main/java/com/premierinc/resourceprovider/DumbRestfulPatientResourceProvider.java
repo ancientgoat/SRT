@@ -107,6 +107,7 @@ public class DumbRestfulPatientResourceProvider implements IResourceProvider {
 		patient.addName();
 		patient.getName().get(0).addFamily(inName);
 		patient.getName().get(0).addGiven(String.format("PatientOne(%s)", inName));
+
 		patient.setGender(AdministrativeGenderEnum.MALE);
 		return patient;
 	}

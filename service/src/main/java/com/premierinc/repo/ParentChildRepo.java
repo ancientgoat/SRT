@@ -30,7 +30,7 @@ public class ParentChildRepo extends JdbcRepository<ParentPersistable, Long> {
 	//	private static SqlGeneratorType dbType;
 
 	private final static String LINK_TABLES =
-			"PARENT_TABLE P LEFT OUTER JOIN CHILD_TABLE C ON C.Id = P.Child_Id";
+			"PARENT_TABLE P LEFT OUTER JOIN CHILD_TABLE C ON C.Parent_Id = P.Id";
 
 	private final static String COLUMN_LIST =
 			"P.Id AS Parent_Id, P.Name AS Parent_Name, C.Id AS Child_Id, C.Name AS Child_Name";

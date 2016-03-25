@@ -27,9 +27,7 @@ public class PatientChildController {
 
 		FhirContext ctx = FhirContext.forDstu2();
 		PatientPersistable patientPersistable = new PatientPersistable();
-		//Patient patientPersistable = new Patient();
 
-		// Set Some Name - wow what a lot of work
 		patientPersistable.addName("Pete");
 		patientPersistable.addIdentifier(new IdentifierDt("theSystem", "theValue"));
 
