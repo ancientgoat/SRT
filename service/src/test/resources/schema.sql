@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS PARENT_TABLE
 );
 
 CREATE TABLE IF NOT EXISTS CHILD_TABLE
-( Id          BIGSERIAL
-, Parent_Id   BIGINT
-, Name        VARCHAR(256)
+( Id            BIGSERIAL
+, Parent_Id     BIGINT
+, Name          VARCHAR(256)
 , Name_Given    VARCHAR(256)
 , Name_Family   VARCHAR(256)
 --

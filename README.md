@@ -3,10 +3,12 @@
 # SRT
 
 ### Goals
+
 #### Required Goals - Learn about
  * TRS
  * FHIR/HAPI
  * JDBCTemplate
+
 #### Made up goals - demo a bit of
  * Spring Boot/Rest/Data, Gradle/GradleWrapper
 
